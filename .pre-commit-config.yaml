@@ -5,9 +5,20 @@ repos:
     hooks:
     -   id: clang-format
         args: [--style=Google]
+        files: ^c/.*$
+        types: [c]
     -   id: clang-tidy
+        files: ^c/.*$
+        types: [c]
     -   id: oclint
+        files: ^c/.*$
+        types: [c]
     -   id: uncrustify
+        files: ^c/.*$
+        types: [c]
     -   id: cppcheck
+        files: ^c/.*$
+        types: [c]
     -   id: cpplint
-        files: ^c/\*\*.c$
+        files: ^c/.*$
+        types: [c]
