@@ -26,7 +26,7 @@ jobs:
         run: echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"' >> /home/runner/.bash_profile
       - name: Install missing tools
         run: >
-          brew install gcc llvm uncrustify cppcheck cpplint oclint && \
+          brew install gcc llvm uncrustify cppcheck cpplint && \
           brew install --cask oclint
       - name: Pre-commit checks
         uses: pre-commit/action@v3.0.0
