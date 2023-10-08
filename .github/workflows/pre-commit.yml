@@ -1,0 +1,33 @@
+name: Pre-commit check
+
+# Controls when the workflow will run
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+jobs:
+  pre-commit:
+    name: Pre-commit check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v3
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+      - name: Install missing tools
+        run: >
+          brew install gcc llvm uncrustify cppcheck include-what-you-use clang-format cpplint && \
+          brew install --cask oclint
+      - name: Pre-commit checks
+        uses: pre-commit/action@v3.0.0
+      - name: pre-commit-ci-lite
+        uses: pre-commit-ci/lite-action@v1.0.1
+        if: always()
