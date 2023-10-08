@@ -22,12 +22,12 @@ jobs:
       - name: Set up Homebrew
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@master
+      - name: clang-format PATH fix
+        run: echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"' >> /home/runner/.bash_profile
       - name: Install missing tools
         run: >
           brew install gcc llvm uncrustify cppcheck include-what-you-use clang-format cpplint && \
           brew install --cask oclint
-      - name: clang-format PATH fix
-        run: echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"' >> /home/runner/.bash_profile
       - name: Pre-commit checks
         uses: pre-commit/action@v3.0.0
       - name: pre-commit-ci-lite
